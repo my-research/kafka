@@ -1,5 +1,6 @@
 DOCKER_COMPOSE = docker-compose
-COMPOSE_FILES = -f docker-compose.yml -f docker-compose-kafka-ui.yml
+DOCKER_DIR = ./docker/
+COMPOSE_FILES = -f $(DOCKER_DIR)docker-compose.yml -f $(DOCKER_DIR)docker-compose-kafka-ui.yml
 
 up:
 	$(DOCKER_COMPOSE) $(COMPOSE_FILES) up -d
