@@ -1,16 +1,25 @@
-# 내가 만든 Kafka 문서와 실용적 사용법들
+# apache kafka
 
-### 개념
+학습하며 정리한 내용과 카프카 사용 예제 코드 저장소
 
-kafka basics([카프카 기본](docs%2F01-kafka.md)),
-differences with others([다른 메시지 브로커와의 차이점](docs%2F02-kafka-differences.md)),
-topics([토픽](docs%2F03-topic.md)),
-partition([파티션](docs%2F04-partition.md)),
-replication([리플리케이션](docs%2F05-replication.md)),
-In-Sync-Replica([ISR](docs%2F06-In-Sync-Replica.md)),
-producer([프로듀서](docs%2F07-producer.md)),
+## 개념
 
-### 실전 코드
+kafka basics([카프카 기본](https://github.com/my-research/kafka/blob/master/docs/01-kafka.md)),
+differences with others([다른 메시지 브로커와의 차이점](https://github.com/my-research/kafka/blob/master/docs/02-kafka-differences.md)),
+topics([토픽](https://github.com/my-research/kafka/blob/master/docs/03-topic.md)),
+partition([파티션](https://github.com/my-research/kafka/blob/master/docs/04-partition.md)),
+replication([리플리케이션](https://github.com/my-research/kafka/blob/master/docs/05-replication.md)),
+In-Sync-Replica([ISR](https://github.com/my-research/kafka/blob/master/docs/06-In-Sync-Replica.md)),
+producer([프로듀서](https://github.com/my-research/kafka/blob/master/docs/07-producer.md)),
+
+## 실전 코드
+
+### kafka producer
+
+basic usage of kafka producer([기본 카프카 프로듀서 사용](#)),
+producer callback([프로듀서 콜백](#)),
+produce to partition([파티션 프로듀싱](#)),
+test suppors([spring 카프카 테스트 커스텀 support](#)),
 
 # run
 
