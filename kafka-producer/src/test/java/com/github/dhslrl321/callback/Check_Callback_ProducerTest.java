@@ -1,6 +1,5 @@
 package com.github.dhslrl321.callback;
 
-import com.github.dhslrl321.support.EmptyTopicKafkaProducerTest;
 import com.github.dhslrl321.support.KafkaProducerTest;
 import com.github.dhslrl321.support.KafkaProducerTestHelper;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -9,8 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
-
 @KafkaProducerTest
 public class Check_Callback_ProducerTest {
 
@@ -18,7 +15,7 @@ public class Check_Callback_ProducerTest {
 
     @BeforeEach
     void setUp() {
-        sut = KafkaProducerTestHelper.simpleKafkaStringProducer();
+        sut = KafkaProducerTestHelper.kafkaStringProducer();
     }
 
     @Test
@@ -26,7 +23,7 @@ public class Check_Callback_ProducerTest {
     void name() {
         ProducerRecord<String, String> message = new ProducerRecord<>("my-topic", "hello world~!");
 
-        sut.send(message, AsyncProducingCallback.defaultCallback());
+        sut.send(message, PrintRecordMetaCallback.get());
 
         sut.close();
     }

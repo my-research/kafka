@@ -21,7 +21,7 @@ public class Disable_TopicAutoCreationOption_KafkaProducingTest {
 
     @BeforeEach
     void setUp() {
-        sut = KafkaProducerTestHelper.simpleKafkaStringProducer();
+        sut = KafkaProducerTestHelper.kafkaStringProducer();
     }
 
     @Test

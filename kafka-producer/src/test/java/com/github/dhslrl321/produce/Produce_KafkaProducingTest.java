@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -23,7 +22,7 @@ public class Produce_KafkaProducingTest {
 
     @BeforeEach
     void setUp() {
-        sut = KafkaProducerTestHelper.simpleKafkaStringProducer();
+        sut = KafkaProducerTestHelper.kafkaStringProducer();
     }
 
     @Test
