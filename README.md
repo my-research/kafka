@@ -14,9 +14,9 @@ replication([리플리케이션](https://github.com/my-research/kafka/blob/maste
 In-Sync-Replica([ISR](https://github.com/my-research/kafka/blob/master/docs/06-In-Sync-Replica.md)),
 producer([프로듀서](https://github.com/my-research/kafka/blob/master/docs/07-producer.md)),
 
-## 학습 테스트 코드
+## 학습 테스트
 
-### kafka producer
+#### kafka producer
 
 - [프로듀싱 테스트](https://github.com/my-research/kafka/tree/master/kafka-producer/src/test/java/com/github/dhslrl321/produce)
   - 토픽에 프로듀싱
@@ -28,12 +28,12 @@ producer([프로듀서](https://github.com/my-research/kafka/blob/master/docs/07
   - 파티션 키를 지정하는 프로듀싱
   - 파티션수를 초과하는 producer 
 
-### kafka consumer
+#### kafka consumer
 
 - [컨슈밍 테스트](https://github.com/my-research/kafka/tree/master/kafka-consumer/src/test/java/com/github/dhslrl321/consume)
   - 싱글/멀티 토픽 컨슈밍
 
-### kafka test supports
+#### kafka test supports
 
 - [EmbeddedKafka supports](https://github.com/my-research/kafka/tree/master/kafka-test-supports/src/main/java/com/github/support)
   - `@KafkaTest` : EmbeddedKafka 를 이용하는 테스트 support
