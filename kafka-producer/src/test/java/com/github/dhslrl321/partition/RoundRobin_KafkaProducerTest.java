@@ -19,14 +19,22 @@ public class RoundRobin_KafkaProducerTest {
 
     @Test
     void name() {
-        ProducerRecord<String, String> message = new ProducerRecord<>("my-topic2", "hello world~");
+        for (int i = 0; i < 10; i++) {
+            if (i % 2 == 0) {
+                sutSend("1", "hello ~ " + i);
+            } else {
+                sutSend("0", "hello ~ " + i);
 
-        sut.send(message, AsyncProducingCallback.defaultCallback());
-        sut.send(message, AsyncProducingCallback.defaultCallback());
-        sut.send(message, AsyncProducingCallback.defaultCallback());
-        sut.send(message, AsyncProducingCallback.defaultCallback());
-        sut.send(message, AsyncProducingCallback.defaultCallback());
+            }
+        }
 
         sut.close();
+    }
+
+    private ProducerRecord<String, String> sutSend(String partitionKey, String messageValue) {
+        ProducerRecord<String, String> message = new ProducerRecord<>("my-topic2", partitionKey, messageValue);
+
+        sut.send(message, AsyncProducingCallback.defaultCallback());
+        return message;
     }
 }
