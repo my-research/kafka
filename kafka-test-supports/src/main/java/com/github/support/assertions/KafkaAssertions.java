@@ -8,9 +8,9 @@ import java.util.stream.StreamSupport;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class KafkaAssertions {
-    public static AbstractStringAssert<?> assertRecordsThat(ConsumerRecords<String, String> record, String topic) {
+    public static AbstractStringAssert<?> assertConsumedThat(ConsumerRecords<String, String> record, Topic topic) {
         String value = StreamSupport.stream(record.spliterator(), false)
-                .filter(i -> i.topic().equals(topic))
+                .filter(i -> i.topic().equals(topic.getValue()))
                 .findFirst()
                 .orElseGet(null)
                 .value();

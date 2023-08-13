@@ -1,9 +1,8 @@
 package com.github.dhslrl321.partition;
 
 import com.github.dhslrl321.callback.PrintRecordMetaCallback;
-import com.github.dhslrl321.support.KafkaProducerTest;
-import com.github.dhslrl321.support.KafkaProducerTestHelper;
-import com.github.dhslrl321.support.SinglePartitionKafkaProducerTest;
+import com.github.support.annotation.KafkaTest;
+import com.github.support.helper.KafkaProducerTestHelper;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,14 +11,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
 
-@KafkaProducerTest(testDescriptions = "partition 의 수는 2개")
-public class RoundRobin_PartitionKey_KafkaProducerTest {
+@KafkaTest(testDescriptions = "partition 의 수는 2개")
+public class RoundRobin_PartitionKey_KafkaTest {
 
     KafkaProducer<String, String> sut;
 
     @BeforeEach
     void setUp() {
-        sut = KafkaProducerTestHelper.kafkaStringProducer(1);
+        sut = KafkaProducerTestHelper.getSimpleProducer(1);
     }
 
 

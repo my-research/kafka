@@ -1,4 +1,4 @@
-package com.github.dhslrl321.support.annotation;
+package com.github.support.annotation;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.test.context.EmbeddedKafka;
@@ -15,5 +15,5 @@ import java.lang.annotation.Target;
         "listeners=PLAINTEXT://localhost:9092",
         "port=9092",
 })
-public @interface SinglePartitionKafkaProducerTest {
+public @interface SinglePartitionKafkaTest {
 }

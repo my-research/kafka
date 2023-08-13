@@ -1,6 +1,6 @@
 package com.github.dhslrl321.produce;
 
-import com.github.support.annotation.KafkaProducerTest;
+import com.github.support.annotation.KafkaTest;
 import com.github.support.helper.KafkaProducerTestHelper;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -15,7 +15,7 @@ import java.util.concurrent.Future;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-@KafkaProducerTest
+@KafkaTest
 public class Produce_KafkaProducingTest {
 
     KafkaProducer<String, String> sut;

@@ -1,6 +1,6 @@
 package com.github.dhslrl321.callback;
 
-import com.github.support.annotation.KafkaProducerTest;
+import com.github.support.annotation.KafkaTest;
 import com.github.support.helper.KafkaProducerTestHelper;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@KafkaProducerTest
+@KafkaTest
 public class Check_Callback_ProducerTest {
 
     KafkaProducer<String, String> sut;

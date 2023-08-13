@@ -15,6 +15,6 @@ import java.lang.annotation.Target;
         "listeners=PLAINTEXT://localhost:9092",
         "port=9092",
 })
-public @interface KafkaProducerTest {
+public @interface KafkaTest {
     String testDescriptions() default "";
 }
