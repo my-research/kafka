@@ -4,7 +4,7 @@
 
 아래 테스트 코드를 통해 카프카의 기본 사용법에 대한 학습 테스트를 직접 수행할 수 있습니다
 
-## 개념
+## Kafka 101, 개념
 
 kafka basics([카프카 기본](https://github.com/my-research/kafka/blob/master/docs/01-kafka.md)),
 differences with others([다른 메시지 브로커와의 차이점](https://github.com/my-research/kafka/blob/master/docs/02-kafka-differences.md)),
@@ -13,10 +13,15 @@ partition([파티션](https://github.com/my-research/kafka/blob/master/docs/04-p
 replication([리플리케이션](https://github.com/my-research/kafka/blob/master/docs/05-replication.md)),
 In-Sync-Replica([ISR](https://github.com/my-research/kafka/blob/master/docs/06-In-Sync-Replica.md)),
 producer([프로듀서](https://github.com/my-research/kafka/blob/master/docs/07-producer.md)),
+producer & partition([프로듀서와 파티션](https://github.com/my-research/kafka/blob/master/docs/08-producer-partition.md)),
+producer & acknowledgement([프로듀서와 ack](https://github.com/my-research/kafka/blob/master/docs/09-producer-ack.md)),
+consumer([컨슈머](https://github.com/my-research/kafka/blob/master/docs/10-consumer.md)),
 
 ## 학습 테스트
 
-#### kafka producer
+테스트는 기본적으로 spring embedded kafka 를 사용합니다. 또한 테스트를 위한 supports 를 제공하여 더욱 깔끔한 테스트를 제공합니다
+
+### kafka producer
 
 - [프로듀싱 테스트](https://github.com/my-research/kafka/tree/master/kafka-producer/src/test/java/com/github/dhslrl321/produce)
   - 토픽에 프로듀싱
@@ -28,12 +33,12 @@ producer([프로듀서](https://github.com/my-research/kafka/blob/master/docs/07
   - 파티션 키를 지정하는 프로듀싱
   - 파티션수를 초과하는 producer 
 
-#### kafka consumer
+### kafka consumer
 
 - [컨슈밍 테스트](https://github.com/my-research/kafka/tree/master/kafka-consumer/src/test/java/com/github/dhslrl321/consume)
   - 싱글/멀티 토픽 컨슈밍
 
-#### kafka test supports
+### kafka test supports
 
 - [EmbeddedKafka supports](https://github.com/my-research/kafka/tree/master/kafka-test-supports/src/main/java/com/github/support)
   - `@KafkaTest` : EmbeddedKafka 를 이용하는 테스트 support
