@@ -16,40 +16,30 @@ producer([프로듀서](https://github.com/my-research/kafka/blob/master/docs/07
 
 ### kafka producer
 
-basic usage of kafka producer([카프카 프로듀서 테스트](#)),
-
-- 토픽에 메시지 발행
-- 토픽 생성 옵션이 꺼져있을 때
-
-producer callback([프로듀서 콜백 테스트](#))
-
-- callback 을 사용한 비동기 처리
-
-produce to partition([파티션 프로듀싱 테스트](#)),
-
-- Round Robin 
-- 파티션 지정
-- 파티션수를 초과하는 producer 
+- basic usage of kafka producer([카프카 프로듀서 테스트](#)),
+  - 토픽에 메시지 발행
+  - 토픽 생성 옵션이 꺼져있을 때
+- producer callback([프로듀서 콜백 테스트](#))
+  - callback 을 사용한 비동기 처리
+- produce to partition([파티션 프로듀싱 테스트](#)),
+  - Round Robin 
+  - 파티션 지정
+  - 파티션수를 초과하는 producer 
 
 ### kafka consumer
 
 ### kafka test supports
 
-[EmbeddedKafka supports](#)
-
-- `@KafkaTest` : EmbeddedKafka 를 이용하는 테스트 support
-- `@SinglePartitionKafkaTest` : Single partition 의 KafkaTest 
-- `@EmptyTopicKafkaTest` : Topic 자동 생성 옵션이 꺼진 KafkaTes
-
-[Junit Extends](#)
-
-- consumer record 에 대한 Junit Assertions
-- 카프카 connection error 를 위한 Junit Tiemout Extension
-
-[Helper](#)
-
-- producer 테스트를 위한 helper 클래스
-- consumer 테스트를 위한 helper 클래스
+- [EmbeddedKafka supports](#)
+  - `@KafkaTest` : EmbeddedKafka 를 이용하는 테스트 support
+  - `@SinglePartitionKafkaTest` : Single partition 의 KafkaTest 
+  - `@EmptyTopicKafkaTest` : Topic 자동 생성 옵션이 꺼진 KafkaTes
+- [Junit Extends](#)
+  - consumer record 에 대한 Junit Assertions
+  - 카프카 connection error 를 위한 Junit Tiemout Extension
+- [Helper](#)
+  - producer 테스트를 위한 helper 클래스
+  - consumer 테스트를 위한 helper 클래스
 
 # run
 
