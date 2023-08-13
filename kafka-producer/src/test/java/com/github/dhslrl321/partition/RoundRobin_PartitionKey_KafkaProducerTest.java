@@ -14,6 +14,7 @@ import java.util.stream.IntStream;
 
 @KafkaProducerTest(testDescriptions = "partition 의 수는 2개")
 public class RoundRobin_PartitionKey_KafkaProducerTest {
+
     KafkaProducer<String, String> sut;
 
     @BeforeEach

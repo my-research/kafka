@@ -1,8 +1,8 @@
 package com.github.dhslrl321.produce;
 
-import com.github.dhslrl321.support.EmptyTopicKafkaProducerTest;
-import com.github.dhslrl321.support.KafkaProducerTestHelper;
-import com.github.dhslrl321.support.KafkaNetworkTimeoutExtension;
+import com.github.support.annotation.EmptyTopicKafkaProducerTest;
+import com.github.support.helper.KafkaProducerTestHelper;
+import com.github.support.junit.KafkaNetworkTimeoutExtension;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +21,7 @@ public class Disable_TopicAutoCreationOption_KafkaProducingTest {
 
     @BeforeEach
     void setUp() {
-        sut = KafkaProducerTestHelper.kafkaStringProducer();
+        sut = KafkaProducerTestHelper.getSimpleProducer();
     }
 
     @Test

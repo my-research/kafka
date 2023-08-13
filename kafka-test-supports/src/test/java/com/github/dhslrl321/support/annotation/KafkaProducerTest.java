@@ -1,4 +1,4 @@
-package com.github.dhslrl321.support;
+package com.github.dhslrl321.support.annotation;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.test.context.EmbeddedKafka;

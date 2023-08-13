@@ -1,4 +1,4 @@
-package com.github.dhslrl321.support;
+package com.github.dhslrl321.support.helper;
 
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestExecutionExceptionHandler;

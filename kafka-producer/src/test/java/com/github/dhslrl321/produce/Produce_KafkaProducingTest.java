@@ -1,7 +1,7 @@
 package com.github.dhslrl321.produce;
 
-import com.github.dhslrl321.support.KafkaProducerTest;
-import com.github.dhslrl321.support.KafkaProducerTestHelper;
+import com.github.support.annotation.KafkaProducerTest;
+import com.github.support.helper.KafkaProducerTestHelper;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
@@ -22,7 +22,7 @@ public class Produce_KafkaProducingTest {
 
     @BeforeEach
     void setUp() {
-        sut = KafkaProducerTestHelper.kafkaStringProducer();
+        sut = KafkaProducerTestHelper.getSimpleProducer();
     }
 
     @Test

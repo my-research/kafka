@@ -1,11 +1,11 @@
-package com.github.dhslrl321.support;
+package com.github.support.helper;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 
 import java.util.Map;
 
 public class KafkaProducerTestHelper {
-    public static KafkaProducer<String, String> kafkaStringProducer() {
+    public static KafkaProducer<String, String> getSimpleProducer() {
         Map<String, Object> props = Map.of(
                 "bootstrap.servers", "localhost:9092",
                 "key.serializer", "org.apache.kafka.common.serialization.StringSerializer",
@@ -14,7 +14,7 @@ public class KafkaProducerTestHelper {
         return new KafkaProducer<>(props);
     }
 
-    public static KafkaProducer<String, String> kafkaStringProducer(int ack) {
+    public static KafkaProducer<String, String> getSimpleProducer(int ack) {
         Map<String, Object> props = Map.of(
                 "bootstrap.servers", "localhost:9092",
                 "key.serializer", "org.apache.kafka.common.serialization.StringSerializer",

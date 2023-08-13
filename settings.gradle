@@ -1,3 +1,5 @@
 rootProject.name = 'kafka'
 
 include(':kafka-producer')
+include(':kafka-consumer')
+include(':kafka-test-supports')
