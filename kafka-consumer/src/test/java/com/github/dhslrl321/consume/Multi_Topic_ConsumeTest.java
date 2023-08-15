@@ -28,13 +28,13 @@ public class Multi_Topic_ConsumeTest {
 
     @Test
     @DisplayName("kafka 의 consumer 는 두개 혹은 그 이상의 토픽을 consume 할 수 있다")
-    void name() throws ExecutionException, InterruptedException {
+    void name() {
         produce("my-topic-1", "hello~");
         produce("my-topic-2", "bye~");
 
         sut.subscribe(List.of("my-topic-1", "my-topic-2"));
 
-        ConsumerRecords<String, String> actual = sut.poll(Duration.ofSeconds(10));
+        ConsumerRecords<String, String> actual = sut.poll(Duration.ofSeconds(2));
 
         assertConsumedThat(actual, topic("my-topic-1")).isEqualTo("hello~");
         assertConsumedThat(actual, topic("my-topic-2")).isEqualTo("bye~");

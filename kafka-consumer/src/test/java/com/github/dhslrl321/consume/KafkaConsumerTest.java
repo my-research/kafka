@@ -10,14 +10,13 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import static com.github.support.assertions.KafkaAssertions.assertConsumedThat;
 import static com.github.support.assertions.Topic.topic;
 import static com.github.support.helper.KafkaConsumerTestHelper.produce;
 
 @KafkaTest
-public class Consume_KafkaConsumerTest {
+public class KafkaConsumerTest {
 
     KafkaConsumer<String, String> sut;
 
@@ -28,12 +27,12 @@ public class Consume_KafkaConsumerTest {
 
     @Test
     @DisplayName("topic 에 message 를 발행하면 consume 할 수 있다")
-    void name() throws ExecutionException, InterruptedException {
+    void name() {
         produce("my-topic", "key1", "hello world!");
 
         sut.subscribe(List.of("my-topic"));
 
-        ConsumerRecords<String, String> actual = sut.poll(Duration.ofSeconds(10));
+        ConsumerRecords<String, String> actual = sut.poll(Duration.ofSeconds(2));
 
         assertConsumedThat(actual, topic("my-topic")).isEqualTo("hello world!");
     }

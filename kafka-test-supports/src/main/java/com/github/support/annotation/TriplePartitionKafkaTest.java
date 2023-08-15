@@ -11,10 +11,10 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @SpringBootTest
-@EmbeddedKafka(partitions = 1, brokerProperties = {
+@EmbeddedKafka(partitions = 3, brokerProperties = {
         "listeners=PLAINTEXT://localhost:9092",
         "port=9092",
 })
-public @interface SinglePartitionKafkaTest {
+public @interface TriplePartitionKafkaTest {
     String testDescriptions() default "";
 }
