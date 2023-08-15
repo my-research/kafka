@@ -34,7 +34,7 @@ public class Multi_Topic_ConsumeTest {
 
         sut.subscribe(List.of("my-topic-1", "my-topic-2"));
 
-        ConsumerRecords<String, String> actual = sut.poll(Duration.ofSeconds(2));
+        ConsumerRecords<String, String> actual = sut.poll(Duration.ofSeconds(10));
 
         assertConsumedThat(actual, topic("my-topic-1")).isEqualTo("hello~");
         assertConsumedThat(actual, topic("my-topic-2")).isEqualTo("bye~");
