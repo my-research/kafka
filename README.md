@@ -16,6 +16,10 @@ producer([프로듀서](https://github.com/my-research/kafka/blob/master/docs/07
 producer & partition([프로듀서와 파티션](https://github.com/my-research/kafka/blob/master/docs/08-producer-partition.md)),
 producer & acknowledgement([프로듀서와 ack](https://github.com/my-research/kafka/blob/master/docs/09-producer-ack.md)),
 consumer([컨슈머](https://github.com/my-research/kafka/blob/master/docs/10-consumer.md)),
+partition ordering([파티션과 순서 보장](https://github.com/my-research/kafka/blob/master/docs/11-partition-order.md)),
+consumer group([컨슈머 그룹](https://github.com/my-research/kafka/blob/master/docs/12-consumer-group.md)),
+re balancing([리밸런싱](https://github.com/my-research/kafka/blob/master/docs/13-re-balance.md)),
+commit & offset([커밋과 오프셋](https://github.com/my-research/kafka/blob/master/docs/14-commit-offset.md)),
 
 ## 학습 테스트
 
@@ -37,6 +41,15 @@ consumer([컨슈머](https://github.com/my-research/kafka/blob/master/docs/10-co
 
 - [컨슈밍 테스트](https://github.com/my-research/kafka/tree/master/kafka-consumer/src/test/java/com/github/dhslrl321/consume)
   - 싱글/멀티 토픽 컨슈밍
+- [컨슈머 순서 보장](#)
+  - 단일 파티션의 순서
+  - 다중 파티션의 순서
+- [컨슈머 그룹 테스트](#)
+  - 동일/다른 컨슈머 그룹의 consuming
+  - 파티션 수에 따른 컨슈머 상관관계
+- [커밋과 오프셋](#)
+  - auto commit mode
+  - manual commit mode
 
 ### kafka test supports
 
