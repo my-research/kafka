@@ -21,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SinglePartitionKafkaTest
 public class ManualCommitTest {
+
     KafkaConsumer<String, String> sut;
 
     @Test
