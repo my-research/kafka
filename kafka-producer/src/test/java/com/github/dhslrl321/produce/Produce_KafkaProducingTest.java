@@ -28,13 +28,14 @@ public class Produce_KafkaProducingTest {
     @Test
     @DisplayName("동기 전송, 메시지를 보내고 future 로 성공 실패 확인")
     void name() throws ExecutionException, InterruptedException {
-        ProducerRecord<String, String> message = new ProducerRecord<>("my-topic", "hello world~!");
 
-        Future<RecordMetadata> future = sut.send(message);
+        ProducerRecord<String, String> message = new ProducerRecord<>("my-topic", "hello world~!"); // 1
 
-        RecordMetadata actual = future.get();
+        Future<RecordMetadata> future = sut.send(message); // 2
 
-        assertThat(actual.topic()).isEqualTo("my-topic");
+        RecordMetadata actual = future.get(); // 3
+
+        assertThat(actual.topic()).isEqualTo("my-topic"); // 4
     }
 
     @Test

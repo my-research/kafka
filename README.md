@@ -56,6 +56,7 @@ commit & offset([커밋과 오프셋](https://github.com/my-research/kafka/blob/
 - [EmbeddedKafka supports](https://github.com/my-research/kafka/tree/master/kafka-test-supports/src/main/java/com/github/support)
   - `@KafkaTest` : EmbeddedKafka 를 이용하는 테스트 support
   - `@SinglePartitionKafkaTest` : Single partition 의 KafkaTest 
+  - `@TriplePartitionKafkaTest` : 3 개의 partition 을 가지는 KafkaTest
   - `@EmptyTopicKafkaTest` : Topic 자동 생성 옵션이 꺼진 KafkaTes
 - [Junit supports](https://github.com/my-research/kafka/tree/master/kafka-test-supports/src/main/java/com/github/support)
   - consumer record 에 대한 Junit Assertions
