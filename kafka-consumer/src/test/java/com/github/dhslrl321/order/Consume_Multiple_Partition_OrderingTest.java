@@ -28,19 +28,20 @@ public class Consume_Multiple_Partition_OrderingTest {
     @Test
     @DisplayName("partition 이 여러개라면 발행한 순서대로 consume 하지 않는다")
     void name() {
-        produce("my-topic", "a", "b", "c", "d", "e");
-        produce("my-topic", "1", "2", "3", "4", "5");
+        // 1
+        produce("my-topic", "a", "b", "c");
+        produce("my-topic", "🔥", "✅", "🥶");
 
-        sut.subscribe(List.of("my-topic"));
+        sut.subscribe(List.of("my-topic")); // 2
 
-        ConsumerRecords<String, String> actual = sut.poll(Duration.ofSeconds(2));
+        ConsumerRecords<String, String> actual = sut.poll(Duration.ofSeconds(2)); // 3
 
-        List<String> messages = messagesFrom(actual);
+        List<String> messages = messagesFrom(actual); // 4
 
-        // 순서대로 consume 되지 않는다
+        // 순서 대로 consume 되지 않는다
         assertThat(messages)
-                .isNotEqualTo(
-                        List.of("a", "b", "c", "d", "e", "1", "2", "3", "4", "5")
+                .isNotEqualTo( // 5
+                        List.of("a", "b", "c", "🔥", "✅", "🥶")
                 );
     }
 }

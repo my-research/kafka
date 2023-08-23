@@ -25,7 +25,7 @@ public class Set_Partition_Key_KafkaTest {
     @DisplayName("partition key 를 입력하면 특정한 파티션에 들어간다.")
     void name() {
         for (int i = 0; i < 6; i++) {
-            String partitionKey = isEven(i) ? "1" : "2";
+            String partitionKey = isEven(i) ? "key-1" : "key-2";
             ProducerRecord<String, String> message = new ProducerRecord<>("my-topic2", partitionKey, "hello ~ " + i);
 
             sut.send(message, SimpleProduceCallback.newOne());

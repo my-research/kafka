@@ -27,35 +27,20 @@ public class Consume_Single_Partition_OrderingTest {
     @Test
     @DisplayName("partition 이 하나라서 발행한 순서대로 consume 된다")
     void name() {
-        produceAtoE();
-        produce1to5();
+        // 1
+        produce("my-topic", "a", "b", "c");
+        produce("my-topic", "🔥", "✅", "🥶");
 
-        sut.subscribe(List.of("my-topic"));
+        sut.subscribe(List.of("my-topic")); // 2
 
-        ConsumerRecords<String, String> actual = sut.poll(Duration.ofSeconds(2));
+        ConsumerRecords<String, String> actual = sut.poll(Duration.ofSeconds(2)); // 3
 
-        List<String> messages = messagesFrom(actual);
+        List<String> messages = messagesFrom(actual); // 4
 
         // 발행 순서대로 consume 된다
         assertThat(messages)
                 .isEqualTo(
-                        List.of("a", "b", "c", "d", "e", "1", "2", "3", "4", "5")
+                        List.of("a", "b", "c", "🔥", "✅", "🥶") // 5
                 );
-    }
-
-    private static void produceAtoE() {
-        produce("my-topic", "a");
-        produce("my-topic", "b");
-        produce("my-topic", "c");
-        produce("my-topic", "d");
-        produce("my-topic", "e");
-    }
-
-    private static void produce1to5() {
-        produce("my-topic", "1");
-        produce("my-topic", "2");
-        produce("my-topic", "3");
-        produce("my-topic", "4");
-        produce("my-topic", "5");
     }
 }

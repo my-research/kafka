@@ -23,19 +23,15 @@ public class RoundRobin_PartitionKey_KafkaTest {
 
 
     @Test
-    @DisplayName("partition key 를 입력하면 특정한 파티션에 들어간다.")
+    @DisplayName("partition key 를 입력 하면 특정한 partition 에 들어 간다.")
     void name() {
-        IntStream.range(0, 6)
-                .forEach(i ->
-                        sutSend("hello ~ " + i));
+        for (int i = 0; i < 6; i++) { // 1
+            ProducerRecord<String, String> message = new ProducerRecord<>("my-topic2", "hello ~ " + i); // 2
 
-        sut.close();
-    }
+            sut.send(message, SimpleProduceCallback.newOne()); // 3
+        }
 
-    private void sutSend(String messageValue) {
-        ProducerRecord<String, String> message = new ProducerRecord<>("my-topic2", messageValue);
-
-        sut.send(message, SimpleProduceCallback.newOne());
+        sut.close(); // 4
     }
 
     /**
