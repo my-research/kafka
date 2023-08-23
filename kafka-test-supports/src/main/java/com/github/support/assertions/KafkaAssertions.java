@@ -16,4 +16,13 @@ public class KafkaAssertions {
                 .value();
         return assertThat(value);
     }
+
+    public static AbstractStringAssert<?> assertConsumedThat(ConsumerRecords<String, String> record, Partition partition) {
+        String value = StreamSupport.stream(record.spliterator(), false)
+                .filter(i -> i.partition() == partition.getValue())
+                .findFirst()
+                .orElseGet(null)
+                .value();
+        return assertThat(value);
+    }
 }

@@ -1,6 +1,6 @@
 package com.github.dhslrl321.partition;
 
-import com.github.dhslrl321.callback.PrintRecordMetaCallback;
+import com.github.dhslrl321.callback.SimpleProduceCallback;
 import com.github.support.annotation.KafkaTest;
 import com.github.support.helper.KafkaProducerTestHelper;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -24,9 +24,12 @@ public class Set_Partition_Key_KafkaTest {
     @Test
     @DisplayName("partition key 를 입력하면 특정한 파티션에 들어간다.")
     void name() {
-        IntStream.range(0, 6)
-                .forEach(i ->
-                        sutSend(isEven(i) ? "pkey1" : "pkey2", "hello ~ " + i));
+        for (int i = 0; i < 6; i++) {
+            String partitionKey = isEven(i) ? "1" : "2";
+            ProducerRecord<String, String> message = new ProducerRecord<>("my-topic2", partitionKey, "hello ~ " + i);
+
+            sut.send(message, SimpleProduceCallback.newOne());
+        }
 
         sut.close();
     }
@@ -45,9 +48,4 @@ public class Set_Partition_Key_KafkaTest {
         return i % 2 == 0;
     }
 
-    private void sutSend(String partitionKey, String messageValue) {
-        ProducerRecord<String, String> message = new ProducerRecord<>("my-topic2", partitionKey, messageValue);
-
-        sut.send(message, PrintRecordMetaCallback.get());
-    }
 }

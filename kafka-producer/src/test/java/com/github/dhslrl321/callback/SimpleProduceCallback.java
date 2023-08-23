@@ -1,24 +1,29 @@
 package com.github.dhslrl321.callback;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
 import static java.util.Objects.nonNull;
 
-public class PrintRecordMetaCallback implements Callback {
+@Slf4j
+public class SimpleProduceCallback implements Callback {
 
-    public static PrintRecordMetaCallback get() {
-        return new PrintRecordMetaCallback();
+    public static SimpleProduceCallback newOne() {
+        return new SimpleProduceCallback();
     }
 
     @Override
     public void onCompletion(RecordMetadata metadata, Exception exception) {
         if (nonNull(metadata)) {
-            System.out.printf("!! produced record, topic: [%s], partition: [%s], offset: [%s], timestamp: [%s]%n",
+            log.info("✅ 메시지 발행 성공, topic: {}, partition: {}, offset: {}, timestamp: {}",
                     metadata.topic(),
                     metadata.partition(),
                     metadata.offset(),
                     metadata.timestamp());
+
+        } else {
+            log.error("❌ 메시지 발행 실패", exception);
         }
     }
 }

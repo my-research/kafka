@@ -1,9 +1,11 @@
-package com.github.dhslrl321.consume;
+package com.github.dhslrl321.partition;
 
 import com.github.support.annotation.KafkaTest;
+import com.github.support.assertions.Partition;
 import com.github.support.helper.KafkaConsumerTestHelper;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.TopicPartition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,8 +18,7 @@ import static com.github.support.assertions.Topic.topic;
 import static com.github.support.helper.KafkaConsumerTestHelper.produce;
 
 @KafkaTest
-public class KafkaConsumerTest {
-
+public class Consume_Partition_Test {
     KafkaConsumer<String, String> sut;
 
     @BeforeEach
@@ -26,14 +27,15 @@ public class KafkaConsumerTest {
     }
 
     @Test
-    @DisplayName("topic 에 message 를 발행하면 consume 할 수 있다")
+    @DisplayName("특정 파티션만 consume 할 수 있다")
     void name() {
-        produce("my-topic", "hello world!"); // 1
+        produce("my-topic", "say-hello", "hello world!");
+        produce("my-topic", "say-good-bye", "bye world!");
 
-        sut.subscribe(List.of("my-topic")); // 2
+        sut.assign(List.of(new TopicPartition("my-topic", 99)));
 
-        ConsumerRecords<String, String> actual = sut.poll(Duration.ofSeconds(2)); // 3
+        ConsumerRecords<String, String> actual = sut.poll(Duration.ofSeconds(2));
 
-        assertConsumedThat(actual, topic("my-topic")).isEqualTo("hello world!"); // 4
+        assertConsumedThat(actual, Partition.partition(0)).isEqualTo("hello world!");
     }
 }

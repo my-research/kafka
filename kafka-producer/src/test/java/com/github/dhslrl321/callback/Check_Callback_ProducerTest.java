@@ -23,7 +23,7 @@ public class Check_Callback_ProducerTest {
     void name() {
         ProducerRecord<String, String> message = new ProducerRecord<>("my-topic", "hello world~!");
 
-        sut.send(message, PrintRecordMetaCallback.get());
+        sut.send(message, SimpleProduceCallback.newOne());
 
         sut.close();
     }

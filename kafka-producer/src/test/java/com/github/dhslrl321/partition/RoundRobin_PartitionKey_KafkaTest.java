@@ -1,6 +1,6 @@
 package com.github.dhslrl321.partition;
 
-import com.github.dhslrl321.callback.PrintRecordMetaCallback;
+import com.github.dhslrl321.callback.SimpleProduceCallback;
 import com.github.support.annotation.KafkaTest;
 import com.github.support.helper.KafkaProducerTestHelper;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -35,7 +35,7 @@ public class RoundRobin_PartitionKey_KafkaTest {
     private void sutSend(String messageValue) {
         ProducerRecord<String, String> message = new ProducerRecord<>("my-topic2", messageValue);
 
-        sut.send(message, PrintRecordMetaCallback.get());
+        sut.send(message, SimpleProduceCallback.newOne());
     }
 
     /**

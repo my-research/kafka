@@ -1,6 +1,6 @@
 package com.github.dhslrl321.partition;
 
-import com.github.dhslrl321.callback.PrintRecordMetaCallback;
+import com.github.dhslrl321.callback.SimpleProduceCallback;
 import com.github.support.annotation.KafkaTest;
 import com.github.support.helper.KafkaProducerTestHelper;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -53,6 +53,6 @@ public class Exceed_Max_Partition_Key_KafkaTest {
     private void sutSend(String partitionKey, String messageValue) {
         ProducerRecord<String, String> message = new ProducerRecord<>("my-topic2", partitionKey, messageValue);
 
-        sut.send(message, PrintRecordMetaCallback.get());
+        sut.send(message, SimpleProduceCallback.newOne());
     }
 }
