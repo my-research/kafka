@@ -30,12 +30,9 @@ public class Partition_1_to_Consumer_3_Test {
     @Test
     @DisplayName("파티션 1:3 컨슈머라면 오로지 하나의 컨슈머 인스턴스만 컨슘한다")
     void name() {
-        produce("my-topic",
-                "a", "b", "c", "d", "e",
-                "1", "2", "3", "4", "5"
-        );
+        produce("my-topic", "a", "b", "c", "🔥", "✅", "⚽️"); // 1
 
-        KafkaConsumer<String, String> consumer1 = KafkaConsumerTestHelper.simpleConsumer();
+        KafkaConsumer<String, String> consumer1 = KafkaConsumerTestHelper.simpleConsumer(); // 2
         KafkaConsumer<String, String> consumer2 = KafkaConsumerTestHelper.simpleConsumer();
         KafkaConsumer<String, String> consumer3 = KafkaConsumerTestHelper.simpleConsumer();
 
@@ -43,7 +40,7 @@ public class Partition_1_to_Consumer_3_Test {
         consumer2.subscribe(List.of("my-topic"));
         consumer3.subscribe(List.of("my-topic"));
 
-        pollAndPrint(consumer1, "consumer1"); // consume o 파티션은 하나만 점유됨
+        pollAndPrint(consumer1, "consumer1"); // consume o 파티션은 하나만 점유됨 // 3
         pollAndPrint(consumer2, "consumer2"); // consume x
         pollAndPrint(consumer2, "consumer3"); // consume x
     }

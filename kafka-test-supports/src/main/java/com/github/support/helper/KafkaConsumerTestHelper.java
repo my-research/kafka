@@ -26,6 +26,19 @@ public class KafkaConsumerTestHelper {
         return new KafkaConsumer<>(props);
     }
 
+    public static KafkaConsumer<String, String> simpleConsumer(String groupIdValue) {
+        Map<String, Object> props = Map.of(
+                "bootstrap.servers", "localhost:9092",
+                "group.id", groupIdValue,
+                "enable.auto.commit", "true",
+                "auto.offset.reset", "earliest",
+                "key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer",
+                "value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer"
+        );
+
+        return new KafkaConsumer<>(props);
+    }
+
     public static KafkaConsumer<String, String> simpleConsumer() {
         Map<String, Object> props = Map.of(
                 "bootstrap.servers", "localhost:9092",

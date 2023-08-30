@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -29,25 +28,21 @@ public class Partition_3_to_Consumer_1_Test {
     }
 
     @Test
-    @DisplayName("파티션 3:1 컨슈머 라면 해당 인스턴스가 모든 파티션을 점유한다")
+    @DisplayName("(파티션-3):(1-컨슈머) 라면 해당 인스턴스가 모든 파티션을 점유한다")
     void name() {
-        produce("my-topic",
-                "a", "b", "c", "d", "e",
-                "1", "2", "3", "4", "5"
-        );
 
-        KafkaConsumer<String, String> consumer1 = KafkaConsumerTestHelper.simpleConsumer();
+        produce("my-topic", "a", "b", "c", "🔥", "✅", "⚽️"); // 1
 
-        consumer1.subscribe(List.of("my-topic")); // 파티션 구독
+        KafkaConsumer<String, String> consumer = KafkaConsumerTestHelper.simpleConsumer(); // 2
 
-        pollAndPrint(consumer1); // consume o 파티션은 하나만 점유됨
-    }
+        consumer.subscribe(List.of("my-topic")); // 파티션 구독
 
-    private void pollAndPrint(KafkaConsumer<String, String> consumer) {
+        // 3
         executorService.submit(() -> {
-            List<ConsumerRecord<String, String>> records = recordListFrom(consumer.poll(Duration.ofSeconds(2)));
+            List<ConsumerRecord<String, String>> records = recordListFrom(consumer.poll(Duration.ofSeconds(2))); // 4
             records.forEach(it ->
                     System.out.printf("partition:[%s], offset:[%s], value:[%s]\n", it.partition(), it.offset(), it.value()));
         });
     }
+
 }
