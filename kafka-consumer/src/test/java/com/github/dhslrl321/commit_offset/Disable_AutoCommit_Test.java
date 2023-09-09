@@ -1,6 +1,7 @@
 package com.github.dhslrl321.commit_offset;
 
 import com.github.support.annotation.SinglePartitionKafkaTest;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,31 +20,32 @@ public class Disable_AutoCommit_Test {
 
     KafkaConsumer<String, String> sut;
 
-    @Test
-    @DisplayName("manual commit 모드라서 처음 consume 했던 a, b, c 에 대해서 중복으로 소비한다")
-    void name() {
-        // message produce
-        produce("my-topic", "a", "b", "c", "🔥", "🔥", "🔥");
-
-        sut = manualCommitConsumer();
-
-        List<String> first = messagesFrom(sut.poll(Duration.ofSeconds(2)));
-        assertThat(first).isEqualTo(List.of("a", "b", "c"));
-
-        sut.close(); // consumer 종료
-
-        sut = manualCommitConsumer();
-
-        List<String> second = messagesFrom(sut.poll(Duration.ofSeconds(2)));
-        assertThat(second).isEqualTo(List.of("a", "b", "c"));
-    }
-
     private static KafkaConsumer<String, String> manualCommitConsumer() {
         KafkaConsumer<String, String> consumer = consumerOf(Map.of(
-                "max.poll.records", "3",
-                "enable.auto.commit", false
+                "max.poll.records", "3", // 1
+                "enable.auto.commit", true // 2
         ));
         consumer.subscribe(List.of("my-topic"));
         return consumer;
+    }
+
+    @Test
+    @DisplayName("manual commit 모드라서 처음 consume 했던 a, b, c 에 대해서 중복으로 소비한다")
+    void name() {
+        produce("my-topic", "a", "b", "c", "🔥", "🔥", "🔥"); // 3
+
+        sut = manualCommitConsumer(); // 4
+
+        // 3
+        List<String> first = messagesFrom(sut.poll(Duration.ofSeconds(2)));
+        assertThat(first).isEqualTo(List.of("a", "b", "c"));
+
+        /*sut.close(); // 4 consumer 종료
+
+        sut = manualCommitConsumer(); // 5*/
+
+        // 6
+        List<String> second = messagesFrom(sut.poll(Duration.ofSeconds(2)));
+        assertThat(second).isEqualTo(List.of("a", "b", "c"));
     }
 }

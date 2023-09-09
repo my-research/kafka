@@ -23,8 +23,8 @@ public class AutoCommitTest {
     @BeforeEach
     void setUp() {
         sut = consumerOf(Map.of(
-                "max.poll.records", "3",
-                "enable.auto.commit", "true"
+                "max.poll.records", "3", // 1
+                "enable.auto.commit", "true" // 2
         ));
 
         sut.subscribe(List.of("my-topic"));
@@ -33,12 +33,12 @@ public class AutoCommitTest {
     @Test
     @DisplayName("auto commit 모드라서 poll() 이 호출될 때 commit 된다")
     void name() {
-        produce("my-topic", "a", "b", "c", "1", "2", "3");
+        produce("my-topic", "a", "b", "c", "🔥", "✅", "⚽️"); // 4
 
-        List<String> first = messagesFrom(sut.poll(Duration.ofSeconds(2)));
+        List<String> first = messagesFrom(sut.poll(Duration.ofSeconds(2))); // 5
         assertThat(first).isEqualTo(List.of("a", "b", "c"));
 
-        List<String> second = messagesFrom(sut.poll(Duration.ofSeconds(2)));
-        assertThat(second).isEqualTo(List.of("1", "2", "3"));
+        List<String> second = messagesFrom(sut.poll(Duration.ofSeconds(2))); // 6
+        assertThat(second).isEqualTo(List.of("🔥", "✅", "⚽️"));
     }
 }
